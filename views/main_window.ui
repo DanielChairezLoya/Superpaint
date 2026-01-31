@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1156</width>
-    <height>600</height>
+    <width>833</width>
+    <height>708</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -37,7 +37,7 @@
      <string>Super Paint</string>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="plainTextEdit">
+   <widget class="QPlainTextEdit" name="txt_Color">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -51,7 +51,7 @@
 </string>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider">
+   <widget class="QSlider" name="slider">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -60,11 +60,23 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>80</number>
+    </property>
+    <property name="singleStep">
+     <number>30</number>
+    </property>
+    <property name="pageStep">
+     <number>30</number>
+    </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btn_pincel">
     <property name="geometry">
      <rect>
       <x>470</x>
@@ -81,7 +93,7 @@
       <normaloff>../icons/pincel.png</normaloff>../icons/pincel.png</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btn_borrador">
     <property name="geometry">
      <rect>
       <x>510</x>
@@ -98,7 +110,7 @@
       <normaloff>../icons/borrador.png</normaloff>../icons/borrador.png</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="btn_linea">
     <property name="geometry">
      <rect>
       <x>550</x>
@@ -115,7 +127,7 @@
       <normaloff>../icons/linea.png</normaloff>../icons/linea.png</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="btn_cuadrado">
     <property name="geometry">
      <rect>
       <x>590</x>
@@ -132,7 +144,7 @@
       <normaloff>../icons/cuadro.png</normaloff>../icons/cuadro.png</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="btn_guardar">
     <property name="geometry">
      <rect>
       <x>630</x>
@@ -149,7 +161,7 @@
       <normaloff>../icons/save.png</normaloff>../icons/save.png</iconset>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="combo_dibujo">
     <property name="geometry">
      <rect>
       <x>670</x>
@@ -163,18 +175,44 @@
 </string>
     </property>
    </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>80</y>
+      <width>600</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white
+</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1156</width>
+     <width>833</width>
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuPaint">
+    <property name="title">
+     <string>Paint</string>
+    </property>
+    <addaction name="actionOpen"/>
+   </widget>
+   <addaction name="menuPaint"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

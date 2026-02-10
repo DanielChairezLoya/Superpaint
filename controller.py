@@ -4,6 +4,7 @@ class MainController:
         self.main_window=main_window
         self.ui=ui
         self.canvas= ui.widget
+        self.ui.combo_dibujo.addItems(["","Cuadricula", "Estrella"])
         self.connect_signals()
 
     #declarar los eventos
@@ -11,6 +12,12 @@ class MainController:
         self.ui.txt_Color.textChanged.connect(self.update_color)
         self.ui.slider.valueChanged.connect(self.update_pincel)
         self.ui.btn_borrador.clicked.connect(self.set_eraser)
+        self.ui.btn_guardar.clicked.connect(self.open_file)
+        self.ui.actionOpen.triggered.connect(self.canvas.open_image)
+
+
+    def open_file (self):
+        self.canvas.save_image()   
 
     def set_eraser(self):
         self.canvas.pen_color = QColor("#308fcf")    
@@ -18,7 +25,16 @@ class MainController:
 
     def update_pincel(self, width):
         #print(width)
-        self.canvas.pen_width = width
+        figura=self.ui.combo_dibujo.currentText()
+        if figura== "":
+            self.canvas.pen_width = width
+        elif figura== "Cuadricula":
+            self.canvas.draw_grid(width)
+        elif figura== "Estrella":
+            self.canvas.draw_star(width)
+        else:
+            print("no hay nada")       
+        
 
     def update_color(self):
         color = self.ui.txt_Color.toPlainText().strip()

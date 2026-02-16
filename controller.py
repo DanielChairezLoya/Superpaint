@@ -4,7 +4,7 @@ class MainController:
         self.main_window=main_window
         self.ui=ui
         self.canvas= ui.widget
-        self.ui.combo_dibujo.addItems(["","Cuadricula", "Estrella","Flor"])
+        self.ui.combo_dibujo.addItems(["","Cuadricula", "Estrella","Flor","Estrella Doble","Tablero"])
         self.connect_signals()
 
     #declarar los eventos
@@ -33,7 +33,11 @@ class MainController:
         elif figura== "Estrella":
             self.canvas.draw_star(width)
         elif figura== "Flor":
-            self.canvas.draw_f(width)    
+            self.canvas.draw_f(width)
+        elif figura== "Estrella Doble":
+            self.canvas.draw_doublestar(width)
+        elif figura== "Tablero":
+            self.canvas.draw_keyboard(width)            
         else:
             print("no hay nada")       
         

@@ -97,7 +97,7 @@ class Canvas(QWidget):
             self.clear()
             for x in range(0, total_l):
                 painter.drawLine(div*x,0,div*x,h)
-                painter.drawLine(0,div*x,div*x,w)
+                painter.drawLine(0,div*x,w,div*x)
         self.update()        
 
     def draw_star(self, value):
@@ -134,9 +134,56 @@ class Canvas(QWidget):
                 painter.drawLine(w-div*x,h,mid_w,h-div*x)
                 painter.drawLine(div*x,0,mid_w,div*x)
                 painter.drawLine(0,h-div*x,div*x,mid_h)
+                painter.drawLine(h-div*x,0,mid_h,div*x)
+                painter.drawLine(h,w-div*x,h-div*x,mid_w)
+                
                 painter.drawLine(0,div*x,div*x,mid_h)
                 painter.drawLine(mid_w,w-div*x,div*x,h)
                 painter.drawLine(mid_h, w,mid_w,0)
 
                 
         self.update()         
+    
+    def draw_doublestar(self, value):
+        self.clear()
+        with QPainter(self.image) as painter:
+            painter.setPen(QPen(QColor("#f00"),1,Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap,Qt.PenJoinStyle.RoundJoin)) 
+            w= self.image.width()
+            h= self.image.height()
+            mid_w= w//2
+            mid_h= h//2
+            div = int(mid_w/ int(value))
+            painter.drawLine(mid_h,0,mid_w,h)
+            painter.drawLine(0, mid_h, w, mid_h)
+            for x in range(1, value):
+                painter.setPen(QPen(QColor("#f00"),1,Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap,Qt.PenJoinStyle.RoundJoin))
+                painter.drawLine(mid_w, div*x,(mid_w+(div*x)),mid_h)
+                painter.drawLine( mid_w,div*x,(mid_w-(div*x)),mid_h)
+                painter.drawLine(mid_w, h-div*x ,(mid_w+(div*x)),mid_h)
+                painter.drawLine(mid_w, h-div*x,(mid_w-(div*x)),mid_h)
+                
+                painter.setPen(QPen(QColor("#00f"),1,Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap,Qt.PenJoinStyle.RoundJoin)) 
+                painter.drawLine(div*x, div*x,mid_w+(div*x),mid_h-(div*x))
+                painter.drawLine(div*x, div*x,mid_w-(div*x),mid_h+(div*x))
+                painter.drawLine(w-div*x,h-div*x,mid_w-(div*x),mid_h+(div*x))
+                painter.drawLine(w-div*x,h-div*x,mid_w+(div*x),mid_h-(div*x))
+                
+            self.update()   
+            
+    def draw_keyboard(self, value):
+        self.clear()
+        with QPainter(self.image) as painter:
+            painter.setPen(QPen(QColor("#f00"),1,Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap,Qt.PenJoinStyle.RoundJoin)) 
+            w= self.image.width()
+            h= self.image.height()
+            div = int(w/ int(value))
+            for x in range(0, value):
+                for y in range(0,value):
+                        
+                    if (x+y) % 2 == 0:
+                        painter.setBrush(QColor("#FFF"))
+                    else:    
+                        painter.setBrush(QColor("#000"))
+                    painter.setPen(Qt.PenStyle.NoPen)
+                    painter.drawRect(div*x,div*y,div,div)   
+        self.update()
